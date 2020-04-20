@@ -22,7 +22,7 @@
 #include "ChartJS_handler.h"
 
 //Constants to control the simulation
-const int SUBJECT_COUNT = 200;
+const int SUBJECT_COUNT = 500;
 const int SIM_WIDTH = 800;
 const int SIM_HEIGHT = 500;
 const int SUBJECT_RADIUS = 2;
