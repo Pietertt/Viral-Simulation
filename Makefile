@@ -10,7 +10,7 @@ OUTPUT_FILE_NAME=index.html
 HTML_DEPENDENCIES_PATH=$(MKFILE_PATH)/dependencies/
 HTML_DEPENDENCIES = Chart.min.js Chart.min.css
 
-prod-build: clean copydeps $(HEADER_FILES) $(SOURCE_FILES)
+prod-build: 
 	@echo Production build started...
 	@cd $(PATH_TO_EMCC) && source ./emsdk_env.sh --build=Release
 	@emcc $(SOURCE_FILES) -s ASYNCIFY -s EXTRA_EXPORTED_RUNTIME_METHODS='["AsciiToString"]' -s WASM=1 -o $(OUTPUT_PATH)$(OUTPUT_FILE_NAME) --shell-file shell_minimal.html
@@ -26,11 +26,6 @@ clean:
 	@rm -rf $(OUTPUT_PATH)
 	@mkdir -p $(OUTPUT_PATH)
 	@echo Cleaning build folder done.
-
-copydeps:
-	# @echo Copying dependencies...
-	# @cd $(HTML_DEPENDENCIES_PATH) && cp -t $(OUTPUT_PATH) $(HTML_DEPENDENCIES)
-	# @echo Copying dependencies done.
 
 run-debug: debug-build
 	@echo "Staring test server with debug ready code... (you can stop the server by pressing ctrl+C)"

@@ -2,7 +2,7 @@
 
 namespace strategies {
       RegularMovementStrategy::RegularMovementStrategy(){
-            this->set_speed(1000 / 500);
+            this->set_speed(1000 / 100);
       }
 
       void RegularMovementStrategy::set_speed(double speed) {

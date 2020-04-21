@@ -48,7 +48,7 @@ void Simulation::run()
 void Simulation::tick()
 {
       tick_count++;
-      std::cout << "Tick: " << tick_count;
+      //std::cout << "Tick: " << tick_count;
 
       double dt = tick_speed / 30.0;
 
@@ -78,16 +78,23 @@ void Simulation::tick()
       {
             if(s.infected()){
                   if((tick_count - s.get_infected_tickstamp()) > 150){
-                        s.desinfect();
+                        s.desinfect(tick_count);
                   }
             }
+
+            if(s.immuun()){
+                  if((tick_count - s.get_immunity_timestamp() > 300)){
+                        s.desimmuun();
+                  }
+            }
+
             s.set_x(s.x() + s.dx() * s.strategy->get_speed());
             s.set_y(s.y() + s.dy() * s.strategy->get_speed());
 
             if (s.infected())
             {
                   numberInfected++;
-                  std::cout << " Infected: " << numberInfected << std::endl;
+                  //std::cout << " Infected: " << numberInfected << std::endl;
             }
       }
 
@@ -114,6 +121,10 @@ void Simulation::draw_to_canvas()
             if (s.infected())
             {
                   c = RED;
+            }
+
+            if(s.immuun()){
+                  c = GREEN;
             }
 
             _canvas.get()->draw_ellipse(s.x(), s.y(), s.radius(), c);

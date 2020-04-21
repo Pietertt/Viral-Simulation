@@ -42,9 +42,12 @@ public:
 
       int get_speed();
       bool infected();
+      bool immuun();
       void infect(unsigned long tick_stamp);
-      void desinfect();
+      void desinfect(unsigned long tick_stamp);
+      void desimmuun();
       unsigned long get_infected_tickstamp();
+      unsigned long get_immunity_timestamp();
       double angle();
       double speed();
 
@@ -54,7 +57,7 @@ private:
       double _x = 0, _y = 0, _dx = 0, _dy = 0;
       bool _infected = false;
       unsigned long _infected_tickstamp = 0;
-      bool _immunity = false;
+      unsigned long _immunity = 0;
       int _radius = 0;
 };
 
