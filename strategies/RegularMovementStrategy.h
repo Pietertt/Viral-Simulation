@@ -5,5 +5,6 @@ namespace strategies {
             public:
                   RegularMovementStrategy();
                   virtual void set_speed(double speed);
+                  virtual int get_speed();
       };
 }

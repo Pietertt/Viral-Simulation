@@ -43,8 +43,6 @@ int main()
       std::uniform_real_distribution<double> dist_dx(-1.0, 1.0);
       std::uniform_real_distribution<double> dist_dy(-1.0, 1.0);
 
-      //strategies::LockdownMovementStrategy =
-
       for (int i = 0; i < SUBJECT_COUNT; ++i)
       {
             double x = dist_w(mt); //Randomly generate x position
@@ -63,10 +61,7 @@ int main()
             {
                   strategies::RegularMovementStrategy regular;
                   su.set_strategy(&regular);
-            }
-
-            std::cout << su.strategy->speed << std::endl;
-            
+            }            
 
             if (i == SUBJECT_COUNT - 1)
             {

@@ -8,4 +8,8 @@ namespace strategies {
       void LockdownMovementStrategy::set_speed(double speed) {
             this->speed = speed;
       }
+
+      int LockdownMovementStrategy::get_speed(){
+            return this->speed;
+      }
 }

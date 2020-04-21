@@ -73,6 +73,10 @@ void Subject::set_strategy(strategies::MovementStrategy *strategy){
       this->strategy = strategy;
 }
 
+int Subject::get_speed(){
+      return this->strategy->get_speed();
+}
+
 int Subject::radius()
 {
       return this->_radius;

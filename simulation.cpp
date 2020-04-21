@@ -52,7 +52,7 @@ void Simulation::tick()
 {
     counter++;
 
-    double dt = tick_speed / 10.0;
+    double dt = tick_speed / 30.0;
 
     std::vector<Subject*> collision_checker;
 
@@ -78,8 +78,8 @@ void Simulation::tick()
 
     for(Subject& s : _subjects)
     {
-        s.set_x(s.x() + s.dx() * dt);
-        s.set_y(s.y() + s.dy() * dt);
+        s.set_x(s.x() + s.dx() * s.strategy->get_speed());
+        s.set_y(s.y() + s.dy() * s.strategy->get_speed());
 
         if(s.infected())
         {
