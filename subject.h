@@ -42,7 +42,9 @@ public:
 
       int get_speed();
       bool infected();
-      void infect();
+      void infect(unsigned long tick_stamp);
+      void desinfect();
+      unsigned long get_infected_tickstamp();
       double angle();
       double speed();
 
@@ -51,6 +53,8 @@ public:
 private:
       double _x = 0, _y = 0, _dx = 0, _dy = 0;
       bool _infected = false;
+      unsigned long _infected_tickstamp = 0;
+      bool _immunity = false;
       int _radius = 0;
 };
 

@@ -32,23 +32,24 @@ namespace corsim
  */
 class Simulation
 {
-    public:
-        Simulation(int width, int height, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh);
-        void add_subject(Subject&& s);
-        void run(); //This method starts the simulation but locks execution because theading is not supported in WASM
-    private:
-        void wall_collision(Subject& s);
-        void subject_collision(Subject& s1, Subject& s2);
-        void static_collision(Subject& s1, Subject& s2, bool emergency);
-        void tick();
-        void draw_to_canvas();
+public:
+      Simulation(int width, int height, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh);
+      void add_subject(Subject &&s);
+      void run(); //This method starts the simulation but locks execution because theading is not supported in WASM
+private:
+      void wall_collision(Subject &s);
+      void subject_collision(Subject &s1, Subject &s2);
+      void static_collision(Subject &s1, Subject &s2, bool emergency);
+      void tick();
+      void draw_to_canvas();
 
-        std::unique_ptr<Canvas> _canvas;
-        std::vector<Subject> _subjects;
-        std::unique_ptr<StatisticsHandler> _sh;
-        bool running = false;
-        int tick_speed = 1000/30;
-        int _sim_width = 800, _sim_height = 500;
+      std::unique_ptr<Canvas> _canvas;
+      std::vector<Subject> _subjects;
+      std::unique_ptr<StatisticsHandler> _sh;
+      bool running = false;
+      unsigned long tick_count = 0;
+      int tick_speed = 1000 / 30;
+      int _sim_width = 800, _sim_height = 500;
 };
 
-}
+} // namespace corsim

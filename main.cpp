@@ -65,7 +65,7 @@ int main()
 
             if (i == 1)
             {
-                  su.infect();
+                  su.infect(0);
             }
 
             s.add_subject(std::move(su));

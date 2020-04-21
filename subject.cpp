@@ -87,9 +87,21 @@ bool Subject::infected()
       return this->_infected;
 }
 
-void Subject::infect()
+void Subject::infect(unsigned long tick_stamp)
 {
-      this->_infected = true;
+      if(!this->_immunity){
+            this->_infected_tickstamp = tick_stamp;
+            this->_infected = true;
+      }
+}
+
+void Subject::desinfect(){
+      this->_infected = false;
+      this->_immunity = true;
+}
+
+unsigned long Subject::get_infected_tickstamp(){
+      return this->_infected_tickstamp;
 }
 
 double Subject::angle()
