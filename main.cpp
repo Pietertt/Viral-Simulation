@@ -63,7 +63,7 @@ int main()
                   su.set_strategy(&regular);
             }            
 
-            if (i == SUBJECT_COUNT - 1)
+            if (i == 1)
             {
                   su.infect();
             }
