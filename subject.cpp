@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "subject.h"
+#include "strategies/MovementStrategy.h"
 #include <math.h>
 
 namespace corsim
@@ -22,75 +23,79 @@ namespace corsim
 
 Subject::Subject(int x, int y, int radius, bool infected)
 {
-    this->_x = x;
-    this->_y = y;
-    this->_radius = radius;
-    this->_infected = infected;
+      this->_x = x;
+      this->_y = y;
+      this->_radius = radius;
+      this->_infected = infected;
 }
 
 double Subject::x()
 {
-    return this->_x;
+      return this->_x;
 }
 
 double Subject::y()
 {
-    return this->_y;
+      return this->_y;
 }
 
 void Subject::set_x(double x)
 {
-    this->_x = x;
+      this->_x = x;
 }
 
 void Subject::set_y(double y)
 {
-    this->_y = y;
+      this->_y = y;
 }
 
 double Subject::dx()
 {
-    return this->_dx;
+      return this->_dx;
 }
 
 double Subject::dy()
 {
-    return this->_dy;
+      return this->_dy;
 }
 
 void Subject::set_dx(double dx)
 {
-    this->_dx = dx;
+      this->_dx = dx;
 }
 
 void Subject::set_dy(double dy)
 {
-    this->_dy = dy;
+      this->_dy = dy;
+}
+
+void Subject::set_strategy(strategies::MovementStrategy *strategy){
+      this->strategy = strategy;
 }
 
 int Subject::radius()
 {
-    return this->_radius;
+      return this->_radius;
 }
 
 bool Subject::infected()
 {
-    return this->_infected;
+      return this->_infected;
 }
 
 void Subject::infect()
 {
-    this->_infected = true;
+      this->_infected = true;
 }
 
 double Subject::angle()
 {
-    return atan2(_dy,_dx);
+      return atan2(_dy, _dx);
 }
 
 double Subject::speed()
 {
-    return sqrt(_dx * _dx + _dy * _dy);
+      return sqrt(_dx * _dx + _dy * _dy);
 }
 
-}
+} // namespace corsim

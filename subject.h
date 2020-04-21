@@ -16,6 +16,8 @@
 
 #pragma once 
 
+#include "strategies/MovementStrategy.h"
+
 namespace corsim
 {
     
@@ -36,10 +38,12 @@ class Subject
         int radius(); //Radius needed for collisions
         void set_dx(double dx);
         void set_dy(double dy);
+        void set_strategy(strategies::MovementStrategy *strategy);
         bool infected();
         void infect();
         double angle();
         double speed();
+        strategies::MovementStrategy *strategy;
     private:
         double _x = 0,_y = 0, _dx = 0, _dy = 0;
         bool _infected = false;
