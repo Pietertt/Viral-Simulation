@@ -69,10 +69,12 @@ void Subject::set_dy(double dy)
       this->_dy = dy;
 }
 
+// Sets the strategy of a subject by passing the address the MovementStrategy class refers to the method.
 void Subject::set_strategy(strategies::MovementStrategy *strategy){
       this->strategy = strategy;
 }
 
+// Returns the current speed as an integer
 int Subject::get_speed(){
       return this->strategy->get_speed();
 }
@@ -82,11 +84,19 @@ int Subject::radius()
       return this->_radius;
 }
 
+// Returns whether the subject is infected. 
+// Returns true when the infected attribute is larger than 0
 bool Subject::infected()
 {
-      return this->_infected;
+      if(this->_infected > 0){
+            return true;
+      } else {
+            return false;
+      }
 }
 
+// Returns whether the subject is infected. 
+// Returns true when the immunity attribute is larger than 0
 bool Subject::immuun(){
       if(this->_immunity > 0){
             return true;
@@ -95,27 +105,32 @@ bool Subject::immuun(){
       }
 }
 
+// Infects the subject when the subject is not immuun
 void Subject::infect(unsigned long tick_stamp)
 {
       if(this->_immunity == 0){
-            this->_infected_tickstamp = tick_stamp;
-            this->_infected = true;
+            this->_infected = tick_stamp;
       }
 }
 
+// Desinfects the subject by setting the infected attribute to 0
+// Also grants the subject immunity by setting the immunity attribute to the current tick
 void Subject::desinfect(unsigned long tick_stamp){
-      this->_infected = false;
+      this->_infected = 0;
       this->_immunity = tick_stamp;
 }
 
+// Removes immunity from the subject by setting the immunity attribute to 0
 void Subject::desimmuun(){
       this->_immunity = 0;
 }
 
+// Returns the infected attribute as an unsigned long 
 unsigned long Subject::get_infected_tickstamp(){
-      return this->_infected_tickstamp;
+      return this->_infected;
 }
 
+// Returns the immunity attribute as an unsigned long 
 unsigned long Subject::get_immunity_timestamp(){
       return this->_immunity;
 }

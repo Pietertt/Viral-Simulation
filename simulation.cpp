@@ -48,7 +48,6 @@ void Simulation::run()
 void Simulation::tick()
 {
       tick_count++;
-      //std::cout << "Tick: " << tick_count;
 
       double dt = tick_speed / 30.0;
 
@@ -76,12 +75,18 @@ void Simulation::tick()
 
       for (Subject &s : _subjects)
       {
+            // desinfect the subject when a few criteria are met
+            //          - the subject is infected
+            //          - the subject is more than 150 seconds infected
             if(s.infected()){
                   if((tick_count - s.get_infected_tickstamp()) > 150){
                         s.desinfect(tick_count);
                   }
             }
 
+            // desinfect the subject when a few criteria are met
+            //          - the subject is infected
+            //          - the subject is more than 300 seconds immuun
             if(s.immuun()){
                   if((tick_count - s.get_immunity_timestamp() > 300)){
                         s.desimmuun();
@@ -94,7 +99,6 @@ void Simulation::tick()
             if (s.infected())
             {
                   numberInfected++;
-                  //std::cout << " Infected: " << numberInfected << std::endl;
             }
       }
 
@@ -116,13 +120,16 @@ void Simulation::draw_to_canvas()
 
       for (Subject &s : _subjects)
       {
+            // Normal subjects are blue
             CanvasColor c = BLUE;
 
+            // Infected subjects are red
             if (s.infected())
             {
                   c = RED;
             }
 
+            // Immune subjects are green
             if(s.immuun()){
                   c = GREEN;
             }

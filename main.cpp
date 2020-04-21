@@ -52,20 +52,26 @@ int main()
 
             su.set_dx(dist_dx(mt));
             su.set_dy(dist_dy(mt));
+
+            // The first 25% of the subjects are regular subjects
+            // The other 75% of the subjects are in lockdown
             if (i >= (SUBJECT_COUNT * 0.25))
             {
+                  // Sets the strategy of the subject by passing a reference of the LockdownMovementStrategy class to the method
                   strategies::LockdownMovementStrategy lockdown;
                   su.set_strategy(&lockdown);
             }
             else
             {
+                  // Sets the strategy of the subject by passing a reference of the RegularMovementStrategy class to the method
                   strategies::RegularMovementStrategy regular;
                   su.set_strategy(&regular);
             }            
 
+            // The first subject is infected
             if (i == 1)
             {
-                  su.infect(0);
+                  su.infect(1);
             }
 
             s.add_subject(std::move(su));

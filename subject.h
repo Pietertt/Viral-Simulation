@@ -55,8 +55,7 @@ public:
 
 private:
       double _x = 0, _y = 0, _dx = 0, _dy = 0;
-      bool _infected = false;
-      unsigned long _infected_tickstamp = 0;
+      unsigned long _infected = 0;
       unsigned long _immunity = 0;
       int _radius = 0;
 };
