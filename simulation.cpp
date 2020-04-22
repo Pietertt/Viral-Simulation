@@ -84,8 +84,8 @@ void Simulation::tick()
                   }
             }
 
-            // desinfect the subject when a few criteria are met
-            //          - the subject is infected
+            // desimmunes the subject when a few criteria are met
+            //          - the subject is immuun
             //          - the subject is more than 300 seconds immuun
             if(s.immuun()){
                   if((tick_count - s.get_immunity_timestamp() > 300)){
