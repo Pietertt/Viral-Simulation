@@ -4,7 +4,7 @@ PATH_TO_EMCC=/Users/pieterboersma/emsdk
 HEADER_FILES = canvas.h ChartJS_handler.h html_canvas.h simulation.h statistics_handler.h subject.h strategies/MovementStrategy.h strategies/RegularMovementStrategy.h strategies/LockdownMovementStrategy.h
 SOURCE_FILES = ChartJS_handler.cpp html_canvas.cpp main.cpp simulation.cpp subject.cpp strategies/RegularMovementStrategy.cpp strategies/LockdownMovementStrategy.cpp
 
-OUTPUT_PATH=$(MKFILE_PATH)/build/
+OUTPUT_PATH=$(MKFILE_PATH)/
 OUTPUT_FILE_NAME=index.html
 
 HTML_DEPENDENCIES_PATH=$(MKFILE_PATH)/dependencies/
@@ -12,8 +12,7 @@ HTML_DEPENDENCIES = Chart.min.js Chart.min.css
 
 prod-build: 
 	@echo Production build started...
-	@cd $(PATH_TO_EMCC) && source ./emsdk_env.sh --build=Release
-	@emcc $(SOURCE_FILES) -s ASYNCIFY -s EXTRA_EXPORTED_RUNTIME_METHODS='["AsciiToString"]' -s WASM=1 -o $(OUTPUT_PATH)$(OUTPUT_FILE_NAME) --shell-file shell_minimal.html
+	@cd $(PATH_TO_EMCC) && source ./emsdk_env.sh --build=Release && cd /Users/pieterboersma/desktop/Viral-Simulation && emcc $(SOURCE_FILES) -s ASYNCIFY -s EXTRA_EXPORTED_RUNTIME_METHODS='["AsciiToString"]' -s WASM=1 -o $(OUTPUT_PATH)$(OUTPUT_FILE_NAME) --shell-file shell_minimal.html
 	@echo Production build complete.
 
 debug-build: clean copydeps $(HEADER_FILES) $(SOURCE_FILES)
