@@ -69,7 +69,10 @@ void Subject::set_dy(double dy)
       this->_dy = dy;
 }
 
-// Sets the strategy of a subject by passing the address the MovementStrategy class refers to the method.
+/* 
+      The *strategy field of the subject holds an adress. This method assigns the adress of a strategy to this field.
+      This is neccesary because the MovementStrategy class is an interface, so it can't be declared.
+*/
 void Subject::set_strategy(strategies::MovementStrategy *strategy){
       this->strategy = strategy;
 }

@@ -30,6 +30,9 @@ const int SIM_WIDTH = 800;
 const int SIM_HEIGHT = 500;
 const int SUBJECT_RADIUS = 2;
 
+strategies::LockdownMovementStrategy lockdown;
+strategies::RegularMovementStrategy regular;
+
 int main()
 {
       corsim::Simulation s(SIM_WIDTH, SIM_HEIGHT, std::make_unique<corsim::HTMLCanvas>(30, 150, SIM_WIDTH, SIM_HEIGHT),
@@ -58,13 +61,11 @@ int main()
             if (i >= (SUBJECT_COUNT * 0.25))
             {
                   // Sets the strategy of the subject by passing a reference of the LockdownMovementStrategy class to the method
-                  strategies::LockdownMovementStrategy lockdown;
                   su.set_strategy(&lockdown);
             }
             else
             {
                   // Sets the strategy of the subject by passing a reference of the RegularMovementStrategy class to the method
-                  strategies::RegularMovementStrategy regular;
                   su.set_strategy(&regular);
             }            
 
